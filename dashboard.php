@@ -388,16 +388,6 @@ $user_level = $_SESSION['level'] ?? 'admin';
 
         <div class="row">
             <div class="col-lg-8">
-                <!-- Chart Container -->
-                <div class="chart-container">
-                    <h3 class="section-title">
-                        <i class="fas fa-chart-line me-2"></i>Statistik Pendaftaran Siswa
-                    </h3>
-                    <div style="height: 300px;">
-                        <canvas id="studentChart"></canvas>
-                    </div>
-                </div>
-
                 <!-- Recent Activity -->
                 <div class="recent-activity">
                     <h3 class="section-title">
