@@ -508,7 +508,7 @@ $user_level = $_SESSION['level'] ?? 'admin';
         <!-- Footer -->
         <div class="footer">
             <p class="mb-2">Sistem Informasi Data Siswa SMA TUNAS HARAPAN &copy; <?php echo date('Y'); ?></p>
-            <p class="mb-0">Jl. Pendidikan No. 123, Kota Harapan | Telp: (021) 1234-5678 | Email: info@smatunasharapan.sch.id</p>
+            <p class="mb-0">Desa Simangalam,Kec.Kualuh Selatan,Kab.Labuhan batu utara. | Telp: (021) 1234-5678 | Email: smatunasharapan@gmail.com</p>
         </div>
     </div>
 
