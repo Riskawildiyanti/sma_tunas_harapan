@@ -300,7 +300,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                         <input type="text" class="form-control" name="username" required placeholder="Masukkan username">
                     </div>
-                    <div class="form-text">Gunakan username yang telah terdaftar</div>
+                    <!-- Text dibawah username dihapus -->
                 </div>
 
                 <div class="mb-4">
@@ -314,15 +314,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
-                    <div class="form-text">Password bersifat sensitif terhadap huruf besar/kecil</div>
+                    <!-- Text dibawah password dihapus -->
                 </div>
 
                 <button type="submit" class="btn btn-login">
                     <i class="fas fa-sign-in-alt me-2"></i>MASUK KE SISTEM
                 </button>
             </form>
+
+            <!-- Demo credentials ditampilkan di bawah tombol login -->
+            <div class="demo-credentials">
+                <div class="demo-info">
+                    <i class="fas fa-user me-1"></i> Username: <strong>admin</strong>
+                </div>
+                <div class="demo-info">
+                    <i class="fas fa-key me-1"></i> Password: <strong>admin123</strong>
+                </div>
+            </form>
             
-    
             <div class="login-footer">
                 <i class="fas fa-copyright me-1"></i> <?= date('Y'); ?> SMA Tunas Harapan
             </div>
