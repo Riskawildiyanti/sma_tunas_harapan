@@ -97,7 +97,6 @@ $result = $koneksi->query($sql);
                             <th>Mata Pelajaran</th>
                             <th>Guru</th>
                             <th>Semester</th>
-                            <th>Tahun Ajaran</th>
                             <th>Harian</th>
                             <th>UTS</th>
                             <th>UAS</th>
@@ -114,7 +113,6 @@ $result = $koneksi->query($sql);
                             <td><?= htmlspecialchars($row['mata_pelajaran']); ?></td>
                             <td><?= htmlspecialchars($row['guru']); ?></td>
                             <td><?= htmlspecialchars($row['semester']); ?></td>
-                            <td><?= htmlspecialchars($row['tahun_ajaran']); ?></td>
                             <td><?= $row['nilai_harian']; ?></td>
                             <td><?= $row['nilai_uts']; ?></td>
                             <td><?= $row['nilai_uas']; ?></td>
