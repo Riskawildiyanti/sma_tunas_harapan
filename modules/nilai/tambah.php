@@ -13,34 +13,45 @@ $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $id_siswa = $_POST['id_siswa'];
-    $id_mapel = $_POST['id_mapel'];
-    $id_guru = $_POST['id_guru'];
-    $id_kelas = $_POST['id_kelas'];
-    $semester = $_POST['semester'];
-    $tahun_ajaran = $_POST['tahun_ajaran'];
-    $nilai_harian = $_POST['nilai_harian'];
-    $nilai_uts = $_POST['nilai_uts'];
-    $nilai_uas = $_POST['nilai_uas'];
-    $keterangan = $_POST['keterangan'];
+    $nama_siswa     = $_POST['nama_siswa'];
+    $mata_pelajaran = $_POST['mata_pelajaran'];
+    $guru           = $_POST['guru'];
+    $kelas          = $_POST['kelas'];
+    $semester       = $_POST['semester'];
+    $tahun_ajaran   = $_POST['tahun_ajaran'];
+    $nilai_harian   = $_POST['nilai_harian'] ?? 0;
+    $nilai_uts      = $_POST['nilai_uts'] ?? 0;
+    $nilai_uas      = $_POST['nilai_uas'] ?? 0;
+    $keterangan     = $_POST['keterangan'];
 
     // HITUNG NILAI AKHIR
     $nilai_akhir = ($nilai_harian * 0.4) + ($nilai_uts * 0.3) + ($nilai_uas * 0.3);
 
-    $sql = "INSERT INTO nilai VALUES (
-            NULL,
-            '$id_siswa',
-            '$id_mapel',
-            '$id_guru',
-            '$id_kelas',
-            '$semester',
-            '$tahun_ajaran',
-            '$nilai_harian',
-            '$nilai_uts',
-            '$nilai_uas',
-            '$nilai_akhir',
-            '$keterangan'
-        )";
+    $sql = "INSERT INTO nilai (
+                nama_siswa,
+                mata_pelajaran,
+                guru,
+                kelas,
+                semester,
+                tahun_ajaran,
+                nilai_harian,
+                nilai_uts,
+                nilai_uas,
+                nilai_akhir,
+                keterangan
+            ) VALUES (
+                '$nama_siswa',
+                '$mata_pelajaran',
+                '$guru',
+                '$kelas',
+                '$semester',
+                '$tahun_ajaran',
+                '$nilai_harian',
+                '$nilai_uts',
+                '$nilai_uas',
+                '$nilai_akhir',
+                '$keterangan'
+            )";
 
     if ($koneksi->query($sql)) {
         header('Location: index.php');
@@ -69,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="card-body">
             <?php if (!empty($error)) : ?>
-                <div class="alert alert-danger"><?php echo $error; ?></div>
+                <div class="alert alert-danger"><?= $error; ?></div>
             <?php endif; ?>
 
             <form method="POST">
@@ -77,23 +88,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="col-md-6">
 
                         <div class="mb-3">
-                            <label class="form-label">ID Siswa</label>
-                            <input type="number" name="id_siswa" class="form-control" required>
+                            <label class="form-label">Nama Siswa</label>
+                            <input type="text" name="nama_siswa" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">ID Mapel</label>
-                            <input type="number" name="id_mapel" class="form-control" required>
+                            <label class="form-label">Mata Pelajaran</label>
+                            <input type="text" name="mata_pelajaran" class="form-control">
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">ID Guru</label>
-                            <input type="number" name="id_guru" class="form-control">
+                            <label class="form-label">Guru</label>
+                            <input type="text" name="guru" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">ID Kelas</label>
-                            <input type="number" name="id_kelas" class="form-control" required>
+                            <label class="form-label">Kelas</label>
+                            <input type="text" name="kelas" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
