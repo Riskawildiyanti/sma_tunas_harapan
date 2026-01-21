@@ -10,26 +10,17 @@ $database = new Database();
 $koneksi = $database->getConnection();
 
 // AMBIL ID NILAI
-$id = $_GET['id'];
+$id = $_GET['id'] ?? null;
+if (!$id) {
+    die("<h3 class='text-danger text-center mt-5'>ID tidak valid!</h3>");
+}
 
-// QUERY DETAIL NILAI LENGKAP
-$sql = "
-    SELECT n.*, 
-           s.nama_lengkap AS nama_siswa,
-           k.nama_kelas,
-           m.nama_mapel,
-           g.nama_guru
-    FROM nilai n
-    LEFT JOIN siswa s ON n.id_siswa = s.id_siswa
-    LEFT JOIN kelas k ON n.id_kelas = k.id_kelas
-    LEFT JOIN mapel m ON n.id_mapel = m.id_mapel
-    LEFT JOIN guru g ON n.id_guru = g.id_guru
-    WHERE n.id_nilai = '$id'
-";
+// QUERY DETAIL NILAI (TANPA JOIN)
+$data = $koneksi->query("SELECT * FROM nilai WHERE id_nilai = '$id'")->fetch_assoc();
 
-$data = $koneksi->query($sql)->fetch_assoc();
-
-if (!$data) die("<h3 class='text-danger text-center mt-5'>Data nilai tidak ditemukan!</h3>");
+if (!$data) {
+    die("<h3 class='text-danger text-center mt-5'>Data nilai tidak ditemukan!</h3>");
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -52,32 +43,32 @@ if (!$data) die("<h3 class='text-danger text-center mt-5'>Data nilai tidak ditem
 
                     <tr>
                         <th style="width:30%">Nama Siswa</th>
-                        <td><?= $data['nama_siswa']; ?></td>
+                        <td><?= htmlspecialchars($data['nama_siswa']); ?></td>
                     </tr>
 
                     <tr>
                         <th>Kelas</th>
-                        <td><?= $data['nama_kelas']; ?></td>
+                        <td><?= htmlspecialchars($data['kelas']); ?></td>
                     </tr>
 
                     <tr>
                         <th>Mata Pelajaran</th>
-                        <td><?= $data['nama_mapel']; ?></td>
+                        <td><?= htmlspecialchars($data['mata_pelajaran']); ?></td>
                     </tr>
 
                     <tr>
                         <th>Guru</th>
-                        <td><?= $data['nama_guru']; ?></td>
+                        <td><?= htmlspecialchars($data['guru']); ?></td>
                     </tr>
 
                     <tr>
                         <th>Semester</th>
-                        <td><?= $data['semester']; ?></td>
+                        <td><?= htmlspecialchars($data['semester']); ?></td>
                     </tr>
 
                     <tr>
                         <th>Tahun Ajaran</th>
-                        <td><?= $data['tahun_ajaran']; ?></td>
+                        <td><?= htmlspecialchars($data['tahun_ajaran']); ?></td>
                     </tr>
 
                     <tr>
@@ -102,7 +93,7 @@ if (!$data) die("<h3 class='text-danger text-center mt-5'>Data nilai tidak ditem
 
                     <tr>
                         <th>Keterangan</th>
-                        <td><?= nl2br($data['keterangan']); ?></td>
+                        <td><?= nl2br(htmlspecialchars($data['keterangan'])); ?></td>
                     </tr>
 
                 </table>
